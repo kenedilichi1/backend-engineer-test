@@ -6,6 +6,7 @@ import compression from "compression";
 
 import { mongoDbClient } from "./common/database/mongo-client";
 import { PORT } from "./common/config";
+import { server } from "./server";
 
 const expressInstance: Express = express();
 
@@ -26,6 +27,8 @@ const expressInstance: Express = express();
     app.use(compression());
 
     app.use(cors());
+
+    server(app);
 
     const httpServer = http.createServer(app);
 

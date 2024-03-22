@@ -11,6 +11,8 @@ export type Environments = (typeof environments)[EnvironmentKeys];
 process.env.NODE_ENV =
   environments[(process.env.NODE_ENV as EnvironmentKeys) || "development"];
 
+export const NODE_ENV =
+  environments[(process.env.NODE_ENV as EnvironmentKeys) || "development"];
 export const isTest = (environment: Environments): boolean =>
   ["testing", "test"].includes(environment);
 
