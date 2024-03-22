@@ -1,0 +1,55 @@
+{
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig to read more about this file */
+
+    /* Language and Environment */
+    "target": "es2020" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+    "lib": ["es6", "es2017", "es2018", "esnext.asynciterable", "esnext"],
+
+    /* Modules */
+    "module": "commonjs",
+    "rootDir": "./src",
+    /* JavaScript Support */
+    "allowJs": true,
+    "sourceMap": true,
+    "outDir": "./build",
+    "removeComments": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Type Checking */
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+
+    /* Additional Checks */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    /* Module Resolution Options */
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    /* Experimental Options */
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    /* Advanced Options */
+
+    "resolveJsonModule": true,
+
+    /* Completeness */
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true
+  },
+  "exclude": [
+    "node_modules",
+    "pm2.config.js",
+    "**/*.test.*",
+    "**/__mocks__/*",
+    "**/__tests__/*"
+  ],
+  "include": ["./src/**/*.ts"]
+}
