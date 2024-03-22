@@ -7,6 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prebuild": "rimraf -v build",
     "build": "tsc -b",
+    "swagger:gen": "node ./build/swagger.js",
+    "postbuild": "npm run swagger:gen",
     "dev": "node ./build/index.js --enable-source-maps --trace-warnings",
     "watch": "tsc-watch --compiler typescript/bin/tsc --onSuccess \"npm run dev\"",
     "start:dev": "npm run build && cross-env NODE_ENV=development && npm run watch"
