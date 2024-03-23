@@ -1,5 +1,8 @@
 import swaggerAutogen from "swagger-autogen";
 import { isTest, NODE_ENV, PORT } from "./common/config";
+import { user } from "./modules/user/dto/user.dto";
+import { authHttpResponse, loginSchema } from "./modules/auth/dto/auth.dto";
+import { httpErrorResponse } from "./common/dtos";
 
 const { version } = require("../package.json");
 
@@ -8,6 +11,7 @@ const { version } = require("../package.json");
 
   const endpoints: string[] = [
     // `${__dirname}/server.js`,
+    `${__dirname}//modules/auth/auth.v1.routes.js`,
   ];
 
   let host: string = `localhost:${PORT}`;
@@ -37,7 +41,12 @@ const { version } = require("../package.json");
       },
     },
     parameters: {},
-    "@definitions": {},
+    "@definitions": {
+      authHttpResponse,
+      httpErrorResponse,
+      loginSchema,
+      user,
+    },
   };
 
   const swaggerOptions = {

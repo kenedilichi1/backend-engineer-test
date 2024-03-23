@@ -5,7 +5,7 @@ import helmet from "helmet";
 import compression from "compression";
 
 import { mongoDbClient } from "./common/database/mongo-client";
-import { PORT } from "./common/config";
+import { DB_NAME, PORT } from "./common/config";
 import { server } from "./server";
 
 const expressInstance: Express = express();
@@ -14,7 +14,7 @@ const expressInstance: Express = express();
   try {
     const mongoClient = mongoDbClient();
     const databaseConnection = await mongoClient.connect();
-    const mongoDbInstance = mongoClient.db("backend-engineer");
+    const mongoDbInstance = mongoClient.db(DB_NAME);
 
     app.locals.mongoDbInstance = mongoDbInstance;
 

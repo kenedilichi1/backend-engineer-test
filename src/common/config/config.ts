@@ -24,3 +24,5 @@ dotenv.config({ path: envFile });
 
 export const PORT = process?.env.PORT || 3000;
 export const DATABASE_URI = process.env.DB_URI;
+export const JWT_SECRET = process.env.JWT_SECRET;
+export const DB_NAME = `backend-engineer-${NODE_ENV}`;

@@ -1,4 +1,5 @@
 import { z } from "zod";
+import zodToJsonSchema from "zod-to-json-schema";
 
 export const EntityStatusOptions = z.enum([
   "DELETED",
@@ -26,3 +27,19 @@ export const EntityStatus = z.object({
 });
 
 export type EntityStatus = z.infer<typeof EntityStatus>;
+
+export const JwtFor = z.enum(["authorized", "authenticated"]);
+export type JwtFor = z.infer<typeof JwtFor>;
+
+export const HttpResponsePayload = z.object({
+  isError: z.boolean(),
+  context: z.string().default("OK"),
+  message: z.string().optional(),
+});
+
+export const httpErrorResponse = zodToJsonSchema(
+  HttpResponsePayload.extend({
+    description: z.string().nullable(),
+    payload: z.string().nullable().default(null),
+  })
+);
