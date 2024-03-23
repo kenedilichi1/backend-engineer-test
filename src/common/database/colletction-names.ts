@@ -1,4 +1,6 @@
-export const CollectionNames = {} as const;
+export const CollectionNames = {
+  User: "USERS",
+} as const;
 
 type CollectionNamesType = typeof CollectionNames;
 
