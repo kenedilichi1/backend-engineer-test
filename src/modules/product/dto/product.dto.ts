@@ -1,6 +1,6 @@
 import { z } from "zod";
 import zodToJsonSchema from "zod-to-json-schema";
-import { HttpResponsePayload } from "../../../common/dtos";
+import { HttpResponsePayload, PaginationCursor } from "../../../common/dtos";
 
 export const ProductHttpInput = z.object({
   productName: z.string({ required_error: "product name is required" }),
@@ -28,4 +28,25 @@ export const CreateProduct = z.object({
 });
 export const createProductHttpRes = zodToJsonSchema(
   HttpResponsePayload.extend({ payload: CreateProduct })
+);
+
+export const Product = z.object({
+  productName: z.string(),
+  productImages: z.string().array(),
+  productPrice: z.string(),
+  quantity: z.number().positive(),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+  userId: z.string(),
+  productId: z.string(),
+});
+export type Product = z.infer<typeof Product>;
+
+export const productsHttpRes = zodToJsonSchema(
+  HttpResponsePayload.extend({
+    payload: z.object({
+      products: Product.array(),
+      paginationCursor: PaginationCursor,
+    }),
+  })
 );

@@ -4,8 +4,14 @@ import {
   createProductController,
   createProductMiddleware,
 } from "./controller/create-product.controller";
+import {
+  getProductsController,
+  getProductsMiddleware,
+} from "./controller/get-products.controller";
 
 const productRouter = Router();
+
+productRouter.get("/v1/products", getProductsMiddleware, getProductsController);
 
 productRouter.post(
   "/v1/product",
