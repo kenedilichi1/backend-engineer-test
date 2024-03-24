@@ -24,4 +24,4 @@ export const LoginDto = z.object({
     .min(8, "password must be a minimum of 8 characters"),
 });
 export type LoginDto = z.infer<typeof LoginDto>;
-export const loginSchema = zodToJsonSchema(LoginDto);
+export const loginSchema = zodToJsonSchema(LoginDto, { name: "loginSchema" });

@@ -110,3 +110,6 @@ swagger_output.json
 doppler.yaml
 
 uploads/
+uploads_development/
+uploads_test/
+uploads_staging/

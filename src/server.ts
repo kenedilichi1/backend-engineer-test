@@ -8,7 +8,10 @@ const swaggerOutputFile = require("./swagger-output.json");
 
 export function server(app: Express) {
   // ---
-  app.get("s", (_request, response) => response.json(swaggerOutputFile));
+  app.get("/api-docs/swagger.json", (_request, response) => {
+    console.log(swaggerOutputFile);
+    response.json(swaggerOutputFile);
+  });
 
   const swaggerUiOptions = {
     explorer: false,

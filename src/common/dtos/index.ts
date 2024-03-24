@@ -43,3 +43,11 @@ export const httpErrorResponse = zodToJsonSchema(
     payload: z.string().nullable().default(null),
   })
 );
+
+export const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png"];
+
+export const JWTVerificationPayload = z.object({
+  userId: z.string(),
+  jwtFor: JwtFor,
+});
+export type JWTVerificationPayload = z.infer<typeof JWTVerificationPayload>;
