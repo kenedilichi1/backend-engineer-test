@@ -8,13 +8,6 @@ export function VerifyJWT(request: Request): JWTVerificationPayload {
   try {
     const token = String(request.headers["x-api-key"]);
 
-    // const p = jwt.decode(token);
-    /**
-     * TODO:
-     * p as same structure as [PAYLOAD: DATA] from jwt.io
-     */
-    // console.log(p, '<<< p');
-
     const key = `${JWT_SECRET}`;
 
     const data = jwt.verify(token, key);
@@ -27,7 +20,7 @@ export function VerifyJWT(request: Request): JWTVerificationPayload {
     }
 
     return {
-      userId: data.user,
+      userId: data.userId,
       jwtFor: data.jwtFor,
     };
   } catch (error) {

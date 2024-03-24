@@ -6,6 +6,7 @@ import { httpErrorResponse } from "./common/dtos";
 import {
   createProductHttpRes,
   productHttpInput,
+  productsHttpRes,
 } from "./modules/product/dto/product.dto";
 
 const { version } = require("../package.json");
@@ -52,6 +53,7 @@ const { version } = require("../package.json");
       httpErrorResponse,
       loginSchema,
       productHttpInput,
+      productsHttpRes,
       user,
     },
   };

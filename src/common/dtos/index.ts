@@ -51,3 +51,19 @@ export const JWTVerificationPayload = z.object({
   jwtFor: JwtFor,
 });
 export type JWTVerificationPayload = z.infer<typeof JWTVerificationPayload>;
+
+export const paginationInputSchema = z.object({
+  before: z.string().optional(),
+  after: z.string().optional(),
+  limit: z.number().default(10),
+});
+
+export type PaginationInputSchema = z.infer<typeof paginationInputSchema>;
+
+export const PaginationCursor = z.object({
+  before: z.string(),
+  after: z.string(),
+  hasNext: z.boolean(),
+  hasPrevious: z.boolean(),
+});
+export type PaginationCursor = z.infer<typeof PaginationCursor>;
