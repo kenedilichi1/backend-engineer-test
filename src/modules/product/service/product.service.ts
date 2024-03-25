@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import { Product, ProductDto } from "../dto/product.dto";
+import { Product, ProductDto, UpdateQuery } from "../dto/product.dto";
 import { ProductRepository } from "../repository/product.repository";
 import { EntityStatusOptions } from "../../../common/dtos";
 import {
@@ -34,6 +34,8 @@ export class ProductService {
     return productEntity;
   }
 
+  // ...
+
   async createProduct(productData: ProductDto): Promise<string> {
     const productEntity = this.dtoToEntity(productData);
 
@@ -42,12 +44,42 @@ export class ProductService {
     return newProduct.toString();
   }
 
+  // ...
+
+  async fetchOneProduct(productId: string): Promise<Product> {
+    const product = await this.productRepo.fetchOne(
+      {
+        _id: toObjectId(productId),
+        "entityStatus.status": EntityStatusOptions.Enum.ACTIVE,
+      },
+      ["entityStatus"],
+      []
+    );
+
+    if (!product) {
+      throw new Exception("NOT_FOUND", "product does not exist");
+    }
+
+    const { _id, userId, ...rest } = product;
+
+    return {
+      productId: _id.toString(),
+      userId: userId.toString(),
+      ...rest,
+    };
+  }
+
+  // ...
+
   async fetchProducts(
     userId: string,
     paginationData: IPagerFirst | IPagerNext | IPagerPrevious
   ) {
     const limit = paginationData.limit;
-    const _query: Record<string, any> = { userId: toObjectId(userId) };
+    const _query: Record<string, any> = {
+      userId: toObjectId(userId),
+      "entityStatus.status": EntityStatusOptions.Enum.ACTIVE,
+    };
 
     const { sort, query } = await paginationHelper(paginationData, _query);
 
@@ -106,5 +138,29 @@ export class ProductService {
       products: results,
       paginationCursor: cursor,
     };
+  }
+
+  // ...
+
+  async updateProduct(productId: string, data: UpdateQuery): Promise<boolean> {
+    return await this.productRepo.update(
+      {
+        _id: toObjectId(productId),
+        "entityStatus.status": EntityStatusOptions.Enum.ACTIVE,
+      },
+      { ...data, updatedAt: new Date() }
+    );
+  }
+
+  // ...
+
+  async deleteProduct(productId: string): Promise<boolean> {
+    return await this.productRepo.update(
+      { _id: toObjectId(productId) },
+      {
+        "entityStatus.status": EntityStatusOptions.Enum.DELETED,
+        updatedAt: new Date(),
+      }
+    );
   }
 }
