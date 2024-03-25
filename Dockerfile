@@ -10,6 +10,8 @@ COPY tsconfig.json ./
 
 RUN rm -rf build
 
+RUN npm install -g pnpm
+
 RUN pnpm install
 
 COPY src ./src
