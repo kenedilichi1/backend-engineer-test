@@ -5,8 +5,12 @@ import { authHttpResponse, loginSchema } from "./modules/auth/dto/auth.dto";
 import { httpErrorResponse } from "./common/dtos";
 import {
   createProductHttpRes,
+  deletedResponse,
+  product,
   productHttpInput,
   productsHttpRes,
+  updateQuery,
+  updateResponse,
 } from "./modules/product/dto/product.dto";
 
 const { version } = require("../package.json");
@@ -50,11 +54,15 @@ const { version } = require("../package.json");
     "@definitions": {
       authHttpResponse,
       createProductHttpRes,
+      deletedResponse,
       httpErrorResponse,
       loginSchema,
+      product,
       productHttpInput,
       productsHttpRes,
       user,
+      updateResponse,
+      updateQuery,
     },
   };
 

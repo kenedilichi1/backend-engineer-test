@@ -46,7 +46,7 @@ export async function loginController(request: Request, response: Response) {
 		 * #swagger.description = 'user login'
 		 * #swagger.operationId = 'login'
 		 * #swagger.produces = ['application/json']
-         * #swagger.parameters = {
+     * #swagger.parameters = {
             in:'body',
             description: 'User login credentials', 
             schema: { $ref: '#/definitions/loginSchema'}

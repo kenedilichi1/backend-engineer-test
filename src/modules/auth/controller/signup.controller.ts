@@ -46,7 +46,7 @@ export async function signupController(request: Request, response: Response) {
 		 * #swagger.description = 'user signup'
 		 * #swagger.operationId = 'signup'
 		 * #swagger.produces = ['application/json']
-         * #swagger.parameters = {
+     * #swagger.parameters = {
             in:'body',
             description: 'Signup  credentials', 
             schema: { $ref: '#/definitions/user'}

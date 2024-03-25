@@ -41,6 +41,9 @@ export const Product = z.object({
   productId: z.string(),
 });
 export type Product = z.infer<typeof Product>;
+export const product = zodToJsonSchema(
+  HttpResponsePayload.extend({ payload: Product })
+);
 
 export const productsHttpRes = zodToJsonSchema(
   HttpResponsePayload.extend({
@@ -49,4 +52,30 @@ export const productsHttpRes = zodToJsonSchema(
       paginationCursor: PaginationCursor,
     }),
   })
+);
+
+export const UpdateQuery = z.object({
+  productPrice: z.string().optional(),
+  quantity: z.number().optional(),
+});
+export type UpdateQuery = z.infer<typeof UpdateQuery>;
+export const updateQuery = zodToJsonSchema(UpdateQuery);
+
+export const UpdateQueryDto = UpdateQuery.extend({
+  productId: z.string(),
+});
+export type UpdateQueryDto = z.infer<typeof UpdateQueryDto>;
+
+export const UpdateResponse = z.object({
+  updated: z.boolean(),
+});
+export const updateResponse = zodToJsonSchema(
+  HttpResponsePayload.extend({ payload: UpdateResponse })
+);
+
+export const DeleteResponse = z.object({
+  deleted: z.boolean(),
+});
+export const deletedResponse = zodToJsonSchema(
+  HttpResponsePayload.extend({ payload: DeleteResponse })
 );
